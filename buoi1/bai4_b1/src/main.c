@@ -5,11 +5,13 @@
 #define GPIOA_CRL     (*(volatile uint32_t *)0x40010800)
 #define GPIOA_ODR     (*(volatile uint32_t *)0x4001080C)
 #define GPIOA_IDR     (*(volatile uint32_t *)0x40010808)
-static void delay(void)
+void delay_ms(uint32_t t)
 {
-    for (volatile uint32_t i = 0; i < 20000; i++)
+    volatile unsigned long l=0;
+    for (volatile uint32_t i = 0; i < t; i++)
     {
-        __asm volatile ("nop");
+        for(l=0; l<800;l++)
+        {}
     }
 }
 int main(void)
@@ -24,7 +26,7 @@ int main(void)
 	while(1){
 		
 			if((GPIOA_IDR&(0x1<<3))!=0){
-				delay();
+				delay_ms(30);
 				if((GPIOA_IDR&(0x1<<3))!=0){
 					GPIOA_ODR^=(0x1<<4);
 				}

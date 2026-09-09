@@ -7,11 +7,13 @@
 #define GPIOA_IDR     (*(volatile uint32_t *)0x40010808)
 #define AFIO_MAPR (*(volatile uint32_t *)0x40010004)
 
-static void delay(void)
+void delay_ms(uint32_t t)
 {
-    for (volatile uint32_t i = 0; i < 20000; i++)
+    volatile unsigned long l=0;
+    for (volatile uint32_t i = 0; i < t; i++)
     {
-        __asm volatile ("nop");
+        for(l=0; l<800;l++)
+        {}
     }
 }
 int main(void)
