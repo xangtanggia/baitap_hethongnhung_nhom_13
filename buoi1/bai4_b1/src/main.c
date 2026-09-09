@@ -38,22 +38,3 @@ int main(void)
 
 	}
 }
-/*int main(void)
-{
-    /* Enable GPIOC clock 
-    RCC_APB2ENR |= (1U << 2);
-
-    /* PC13 = output push-pull, 2 MHz 
-    GPIOA_CRL &= ~(0xFU << 0);
-    GPIOA_CRL |=  (0x3U<< 0);
-
-    while (1)
-    {
-        GPIOA_ODR |= (1U << 0);
-	delay();
-	GPIOA_ODR &= ~(1U << 0);
-	delay();
-
-       
-    }
-}*/
