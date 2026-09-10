@@ -1,5 +1,4 @@
 #include <stdint.h>
-
 #define RCC_APB2ENR   (*(volatile uint32_t *)0x40021018)
 #define GPIOA_CRH     (*(volatile uint32_t *)0x40010804)
 #define GPIOA_CRL     (*(volatile uint32_t *)0x40010800)
@@ -23,8 +22,8 @@ int main(void)
 	GPIOA_CRL |= 0x33333333;
 	while(1){
 		delay_ms(1000);
-		GPIOA_ODR |=(0x0000FFFF);
-		GPIOA_ODR &=~(0x1<<count);
+		GPIOA_ODR &=~(0x0000FFFF);
+		GPIOA_ODR |=(0x1<<count);
 		if (count>=7){
 			v=-1;
 		}

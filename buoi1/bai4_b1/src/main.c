@@ -16,13 +16,11 @@ void delay_ms(uint32_t t)
 }
 int main(void)
 {
-	volatile int32_t count=0;
-	volatile int32_t v=1;
 
 	RCC_APB2ENR |= 0x00000004;
-	GPIOA_CRL &= (~0xFFFFFFFF);
+	GPIOA_CRL &= (~0x000FF000);
 	GPIOA_CRL |= 0x00038000;
-	GPIOA_ODR &=~ (0x1 << 0);
+	GPIOA_ODR |= (0x01 << 3);
 	while(1){
 		
 			if((GPIOA_IDR&(0x1<<3))!=0){
@@ -34,7 +32,6 @@ int main(void)
 
 				}
 			}
-		
 
 	}
 }
